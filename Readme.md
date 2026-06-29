@@ -7,7 +7,7 @@ electronics distributor. Starting from a raw extract with intentional data-quali
 problems, the data is cleaned, enriched, analysed, and surfaced through an
 interactive single-page dashboard.
 
-All measures are driven by live Excel formulas and PivotTables—there are no
+All measures are driven by live Excel formulas and PivotTables there are no
 hard-coded totals. Filtering the dashboard slicers recalculates every KPI, chart,
 and dynamic title.
 
