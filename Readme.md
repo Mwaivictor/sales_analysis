@@ -21,7 +21,6 @@ The primary output is a single-page interactive dashboard built for executive re
 - **Slicers (6):** Region, Country, Channel, ProductCategory, Month, Salesperson.
 - **KPIs (5):** Total Revenue, Gross Profit, Margin %, Avg Order Value, On-Time % (≤ 7 days). All KPIs recalculate with the slicers via `GETPIVOTDATA`.
 - **Visuals (4):** Revenue by Month (line), Profit by Region & Channel (stacked column), Top 10 SKUs by Revenue (bar), Discount Distribution (box & whisker).
-- **Dynamic titles:** Chart titles are linked to helper cells that build filter-aware text from the live KPIs, making them fully dynamic.
 - **Insights panel:** 8 narrative bullets covering all four regions.
 
 
