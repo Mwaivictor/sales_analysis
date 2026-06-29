@@ -1,14 +1,37 @@
 # Sales Operations & Analytics — Excel Mastery Assignment
 
 ## 1. Project Overview
+
 This workbook analyses **632 transactional sales records** from a multi-regional
 electronics distributor. Starting from a raw extract with intentional data-quality
 problems, the data is cleaned, enriched, analysed, and surfaced through an
 interactive single-page dashboard.
 
-All measures are driven by live Excel formulas and PivotTables there are no
+All measures are driven by live Excel formulas and PivotTables—there are no
 hard-coded totals. Filtering the dashboard slicers recalculates every KPI, chart,
 and dynamic title.
+
+## 2. Interactive Dashboard
+
+The primary output is a single-page interactive dashboard built for executive review. It allows for dynamic filtering of sales data to uncover regional, channel, and product-level insights.
+
+![Sales Dashboard View 1](Dashboard%201.png)
+
+### Key Features
+- **Slicers (6):** Region, Country, Channel, ProductCategory, Month, Salesperson.
+- **KPIs (5):** Total Revenue, Gross Profit, Margin %, Avg Order Value, On-Time % (≤ 7 days). All KPIs recalculate with the slicers via `GETPIVOTDATA`.
+- **Visuals (4):** Revenue by Month (line), Profit by Region & Channel (stacked column), Top 10 SKUs by Revenue (bar), Discount Distribution (box & whisker).
+- **Dynamic titles:** Chart titles are linked to helper cells that build filter-aware text from the live KPIs, making them fully dynamic.
+- **Insights panel:** 8 narrative bullets covering all four regions.
+
+
+## 3. Summary of Key Findings
+
+*   **Overall Performance:** The business generated **$10.93M** in revenue at a **31.1%** gross margin ($3.40M profit). However, the on-time shipment rate is a major operational risk, with only **21.8%** of orders meeting the 7-day target.
+*   **Regional Variances:** **Asia** is the largest market by revenue ($2.84M) but suffers from the lowest margin (29.3%) and worst on-time rate (17.0%). In contrast, **Africa** is the most efficient, with the best on-time rate (24.8%) and a high margin (32.2%) on a smaller order base.
+*   **Channel Cannibalization:** **Online** sales are steadily replacing **Retail** sales in every region. The trend is most pronounced in the **Americas**, where Retail revenue fell 72% from 2023-2025 while Online grew, making it the dominant channel.
+*   **Pricing & Compliance:** The **Americas** has a strong 32.1% margin but the highest rate of non-compliant discounts (17.2% of orders >20% discount). Pricing outliers exist across regions, with one discount reaching 56.5%, far exceeding the 30% policy cap.
+*   **Product & Sales Performance:** Revenue is highly concentrated. The top **~45%** of SKUs (Class A) drive **80%** of revenue. There is also a **73%** performance gap between the top salesperson (~$20.9k revenue/order) and the bottom.
 
 
 ## 2. Workbook Structure (sheet guide)
@@ -28,6 +51,7 @@ and dynamic title.
 | **scenario modeling** | What-If control panel (baseline vs modelled). |
 | **Dashboard** | Single-page interactive dashboard (KPIs, slicers, charts, insights). |
 
+
 ## 3. Part A — Data Cleaning & Preparation
 
 ### 3.1 Data issues found
@@ -42,13 +66,13 @@ A row is treated as an exact duplicate only when **every field** matches another
 `short_order_id` is retained as a readable order key.
 
 ### 3.3 Cleaning rules applied
-- **Missing City / Channel / Salesperson** imputed with the **most-common (mode) value
+- **Missing City / Channel / Salesperson** → imputed with the **most-common (mode) value
   for that same Country**, a defensible business rule given regional sales coverage.
-- **Data types** dates stored as real dates; numeric fields stored as numbers.
-- **Lead time** `lead_time = RequiredDate − OrderDate`. Where negative,
+- **Data types** → dates stored as real dates; numeric fields stored as numbers.
+- **Lead time** → `lead_time = RequiredDate − OrderDate`. Where negative,
   `adj_lead_time` substitutes the **median lead time**, and `adj_required_date`
   is rebuilt as `OrderDate + adj_lead_time`.
-- **Discounts** `cap_adjusted_discount = MIN(DiscountPct, global cap)`;
+- **Discounts** → `cap_adjusted_discount = MIN(DiscountPct, global cap)`;
   a `discount>30%` flag marks policy breaches.
 
 ### 3.4 Calculated columns (in clean_data)
@@ -64,7 +88,6 @@ A row is treated as an exact duplicate only when **every field** matches another
 - Region hierarchy: **Region → Country → City**.
 - `price_band` (Low / Medium / High) from the percentile cut-offs in **Quantiles**.
 
----
 
 ## 4. Part B — Analysis
 
@@ -97,19 +120,11 @@ vs a **$10.93M** baseline.
 
 
 ## 6. Part D — Interactive Dashboard
-
-![Sales Dashboard View 1](Dashboard%201.png)
-
-![Sales Dashboard View 2](Dashboard%202.png)
-
 - **Slicers (6):** Region, Country, Channel, ProductCategory, Month, Salesperson.
 - **KPIs (5):** Total Revenue, Gross Profit, Margin %, Avg Order Value, On-Time %
   (≤ 7 days). All recalc with the slicers via `GETPIVOTDATA`.
 - **Visuals (4):** Revenue by Month (line), Profit by Region & Channel (stacked
   column), Top 10 SKUs by Revenue (bar), Discount Distribution (box & whisker).
-- **Dynamic titles:** helper cells `U1:U4` build filter-aware title text from the
-  live KPIs (link a chart title with `= Dashboard!$U$n` to make it fully dynamic).
-- **Insights panel:** 8 narrative bullets covering all four regions.
 
 ## 7. Key Assumptions
 - **"Order"** = one transaction line (each row); counts and AOV are per line.
