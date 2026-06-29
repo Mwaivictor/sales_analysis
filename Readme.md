@@ -15,7 +15,7 @@ and dynamic title.
 
 The primary output is a single-page interactive dashboard built for executive review. It allows for dynamic filtering of sales data to uncover regional, channel, and product-level insights.
 
-![Sales Dashboard View 1](Dashboard%201.png)
+![Sales Dashboard View 1](Final.png)
 
 ### Key Features
 - **Slicers (6):** Region, Country, Channel, ProductCategory, Month, Salesperson.
