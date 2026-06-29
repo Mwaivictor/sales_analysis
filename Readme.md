@@ -1,4 +1,4 @@
-# Sales Operations & Analytics — Excel Mastery Assignment
+# Sales Operations & Analytics Excel Mastery
 
 ## 1. Project Overview
 
