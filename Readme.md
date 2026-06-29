@@ -52,7 +52,7 @@ The primary output is a single-page interactive dashboard built for executive re
 | **Dashboard** | Single-page interactive dashboard (KPIs, slicers, charts, insights). |
 
 
-## 3. Part A — Data Cleaning & Preparation
+## 3. Part A Data Cleaning & Preparation
 
 ### 3.1 Data issues found
 - **Missing values:** 8 blank `City`, 8 blank `Channel`, 8 blank `Salesperson`.
@@ -68,11 +68,11 @@ A row is treated as an exact duplicate only when **every field** matches another
 ### 3.3 Cleaning rules applied
 - **Missing City / Channel / Salesperson** → imputed with the **most-common (mode) value
   for that same Country**, a defensible business rule given regional sales coverage.
-- **Data types** → dates stored as real dates; numeric fields stored as numbers.
-- **Lead time** → `lead_time = RequiredDate − OrderDate`. Where negative,
+- **Data types** dates stored as real dates; numeric fields stored as numbers.
+- **Lead time** `lead_time = RequiredDate − OrderDate`. Where negative,
   `adj_lead_time` substitutes the **median lead time**, and `adj_required_date`
   is rebuilt as `OrderDate + adj_lead_time`.
-- **Discounts** → `cap_adjusted_discount = MIN(DiscountPct, global cap)`;
+- **Discounts** `cap_adjusted_discount = MIN(DiscountPct, global cap)`;
   a `discount>30%` flag marks policy breaches.
 
 ### 3.4 Calculated columns (in clean_data)
@@ -89,7 +89,7 @@ A row is treated as an exact duplicate only when **every field** matches another
 - `price_band` (Low / Medium / High) from the percentile cut-offs in **Quantiles**.
 
 
-## 4. Part B — Analysis
+## 4. Part B Analysis
 
 - **Cohort (Cohort_analysis):** each Country's first order month is identified, and
   revenue is tracked by *months since first order*.
@@ -107,7 +107,7 @@ A row is treated as an exact duplicate only when **every field** matches another
   by Region and Salesperson, with a sorted outlier list.
 
 
-## 5. Part C — Scenario Modelling (What-If)
+## 5. Part C Scenario Modelling (What-If)
 The **scenario modeling** sheet drives three controls, referenced by `clean_data`
 with locked absolute references (`$B$2/$B$3/$B$4`) so every row responds:
 - **Global Discount Cap** (caps each order's discount).
@@ -119,7 +119,7 @@ settings (10% cap, 10% cost inflation, 20% uplift), modelled revenue is **$13.79
 vs a **$10.93M** baseline.
 
 
-## 6. Part D — Interactive Dashboard
+## 6. Part D Interactive Dashboard
 - **Slicers (6):** Region, Country, Channel, ProductCategory, Month, Salesperson.
 - **KPIs (5):** Total Revenue, Gross Profit, Margin %, Avg Order Value, On-Time %
   (≤ 7 days). All recalc with the slicers via `GETPIVOTDATA`.
