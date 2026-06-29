@@ -39,7 +39,6 @@ The primary output is a single-page interactive dashboard built for executive re
 |-------|---------|
 | **original_data** | Untouched raw extract (632 rows × 15 columns). |
 | **Brief** | The assignment specification. |
-| **ReadMe** | In-workbook summary of issues, rules, and assumptions. |
 | **clean_data** | Staging table (`Table1`, 42 columns) — cleaning, enrichment, calculated fields. |
 | **Quantiles** | Price-band cut-offs (33rd / 67th percentiles of UnitPrice). |
 | **Cohort_analysis** | First-order cohort: revenue by Country × months-since-first-order. |
